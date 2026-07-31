@@ -14,22 +14,22 @@ class Tgt < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.4/tgt-0.1.4-aarch64-apple-darwin.tar.gz"
-      sha256 "08ee5552a7e7f7db5ef41d15dfdca1dea1a87b23820426abf6f781c253334227"
+      sha256 "9b498685de868594d3b0bed93e6b80cfc56758f713c07e3728c63c14c1e924bd"
     end
     if Hardware::CPU.intel?
       url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.4/tgt-0.1.4-x86_64-apple-darwin.tar.gz"
-      sha256 "a9a27cf07599d0612ac5cb07e982c8dbba29336754dcf5fbd05d989a36ece138"
+      sha256 "68540c4c4698255813e877c8fa9a618a48aab6ea8678d618bd46c983f75d19c6"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.4/tgt-0.1.4-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "414e513d2be24eebfb27daf434dc5923718d61853a6aaf5c9b7d54c4c08e3ee8"
+      sha256 "1112f1ae7f3efa2f29681928cc38cfdd5633d863ae59eca35f620b20d709a73c"
     end
     if Hardware::CPU.intel?
       url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.4/tgt-0.1.4-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "8810a52a028f58779dec47da23afaafd88536734f29b39486e1f633f2cdf35b0"
+      sha256 "74829861d713cbf715ccfc45f7c237cb8c32807f10a8c5350ad4ae5c9c98f8f1"
     end
   end
 
