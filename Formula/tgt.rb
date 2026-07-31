@@ -2,7 +2,7 @@
 class Tgt < Formula
   desc "Keyboard-driven Telegram client for the terminal"
   homepage "https://github.com/SpechtLabs/telegram-tui"
-  version "0.1.4"
+  version "0.1.6"
   license "MIT"
 
   # Ordered to satisfy brew style's FormulaAudit/ComponentsOrder: livecheck
@@ -13,23 +13,23 @@ class Tgt < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.4/tgt-0.1.4-aarch64-apple-darwin.tar.gz"
-      sha256 "9b498685de868594d3b0bed93e6b80cfc56758f713c07e3728c63c14c1e924bd"
+      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.6/tgt-0.1.6-aarch64-apple-darwin.tar.gz"
+      sha256 "71868584a49e6c49b5bef78178a8abf04996d590745c487188b3b9f39b8d387c"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.4/tgt-0.1.4-x86_64-apple-darwin.tar.gz"
-      sha256 "68540c4c4698255813e877c8fa9a618a48aab6ea8678d618bd46c983f75d19c6"
+      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.6/tgt-0.1.6-x86_64-apple-darwin.tar.gz"
+      sha256 "d99b72502affbf9c3d6698992a4c9a230dfcf097abea46733bf59e82b9f47781"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.4/tgt-0.1.4-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "1112f1ae7f3efa2f29681928cc38cfdd5633d863ae59eca35f620b20d709a73c"
+      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.6/tgt-0.1.6-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "fba38d7ecb4f5107028d1e25b846702f174fa2a8f748c69791ef592e5e661a45"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.4/tgt-0.1.4-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "74829861d713cbf715ccfc45f7c237cb8c32807f10a8c5350ad4ae5c9c98f8f1"
+      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.6/tgt-0.1.6-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "9b61689f83f02995aa745c9a8d90ba8d0358f137f58ac41a9029f9afdb6df0ba"
     end
   end
 
@@ -42,8 +42,16 @@ class Tgt < Formula
   # Linux) never lands in the shared lib/. Both dyld and glibc's ld.so resolve
   # the symlink to its real path before expanding the runpath, so the linked
   # bin/tgt still finds libexec/lib.
+  # Homebrew strips a single top-level directory when it stages an archive, so
+  # by the time this runs the working directory already *is* the contents of
+  # the tarball's tgt/ — globbing "tgt/*" matches nothing, and v0.1.4 installed
+  # an empty libexec and a dangling bin symlink because of it. The dotfile glob
+  # is separate because Ruby's Dir["*"] skips dotfiles, which would silently
+  # drop the .tgt-install marker that `tgt update` reads to confirm a tree is
+  # ours. Dir returns [] when it matches nothing, so this stays correct for
+  # releases predating the marker.
   def install
-    libexec.install Dir["tgt/*"]
+    libexec.install Dir["*"] + Dir[".tgt-install"]
     bin.install_symlink libexec/"bin/tgt"
   end
 
