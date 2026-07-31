@@ -18,7 +18,7 @@ class Tgt < Formula
     end
     if Hardware::CPU.intel?
       url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.5/tgt-0.1.5-x86_64-apple-darwin.tar.gz"
-      sha256 "9ed442c4dca067ed588906cfab1680b1048c1002dd53ceb7a9c037d0ca1c5c3d"
+      sha256 "1921211e3285abfbc50ce21df2aafb334602d324dac8fd25a3b90eba29470758"
     end
   end
 
