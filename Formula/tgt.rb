@@ -2,7 +2,7 @@
 class Tgt < Formula
   desc "Keyboard-driven Telegram client for the terminal"
   homepage "https://github.com/SpechtLabs/telegram-tui"
-  version "0.1.6"
+  version "0.1.7"
   license "MIT"
 
   # Ordered to satisfy brew style's FormulaAudit/ComponentsOrder: livecheck
@@ -13,23 +13,23 @@ class Tgt < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.6/tgt-0.1.6-aarch64-apple-darwin.tar.gz"
-      sha256 "71868584a49e6c49b5bef78178a8abf04996d590745c487188b3b9f39b8d387c"
+      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.7/tgt-0.1.7-aarch64-apple-darwin.tar.gz"
+      sha256 "8a1cc639733459c7716001f789e5f71d91718ac8e0c2ce3f5eaccf13a9b9a7d4"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.6/tgt-0.1.6-x86_64-apple-darwin.tar.gz"
-      sha256 "d99b72502affbf9c3d6698992a4c9a230dfcf097abea46733bf59e82b9f47781"
+      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.7/tgt-0.1.7-x86_64-apple-darwin.tar.gz"
+      sha256 "7a8dbbb2a5576936fbbb25afebd691326a11a4da20f2aa1ab33f877e60d8b699"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.6/tgt-0.1.6-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "fba38d7ecb4f5107028d1e25b846702f174fa2a8f748c69791ef592e5e661a45"
+      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.7/tgt-0.1.7-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "baee693a6c3acb46fc98b59185e0cf02445f2ab26bc13d1568f9b43e5118de86"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.6/tgt-0.1.6-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "9b61689f83f02995aa745c9a8d90ba8d0358f137f58ac41a9029f9afdb6df0ba"
+      url "https://github.com/SpechtLabs/telegram-tui/releases/download/v0.1.7/tgt-0.1.7-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "559a92b35251fa9186530160308653cffa4c932105d27677513043d66e8ff8da"
     end
   end
 
