@@ -1,0 +1,40 @@
+# .mise.toml — local tooling, exact pins (repo convention)
+#
+# The tasks below check this tap's own plumbing; CI uses these tasks. The
+# formulae and casks themselves are checked by Homebrew (brew style and brew
+# audit, see .github/workflows/ci.yaml), which mise can't provide. Renovate
+# keeps every pin in this file current.
+
+[settings]
+# The pins below are the only source of tool versions.
+idiomatic_version_file_enable_tools = []
+
+[tools]
+yamllint = "1.38.0"
+actionlint = "1.7.12"
+# actionlint runs shellcheck on every `run:` script when it's on PATH, and
+# silently skips them when it isn't.
+shellcheck = "0.11.0"
+
+# Pins GitHub Actions to commit SHAs (see the update-gha task)
+pinact = "5.0.0"
+
+[tasks.yaml-lint]
+description = "Lint every YAML file in the repository"
+run = "yamllint --strict ."
+
+[tasks.actionlint]
+description = "Lint the GitHub Actions workflows"
+run = "actionlint"
+
+[tasks.lint]
+description = "Lint YAML and workflows"
+depends = ["yaml-lint", "actionlint"]
+
+[tasks.check]
+description = "The definition of done: every gate CI runs through mise"
+depends = ["lint"]
+
+[tasks.update-gha]
+description = "Pin GitHub Actions to commit SHAs (Renovate keeps them current afterwards)"
+run = "pinact run"
